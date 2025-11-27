@@ -14,28 +14,31 @@ describe('Tags Resource', () => {
 
     it('should list tags', async () => {
         const mockTags = [{ id: '1', name: 'Test Tag', created_at: '2023-01-01' }];
-        mockedAxios.get.mockResolvedValue({ data: { data: mockTags, success: true } });
+        const mockResponse = { data: mockTags, success: true };
+        mockedAxios.get.mockResolvedValue({ data: mockResponse });
 
-        const tags = await client.tags.list();
-        expect(tags).toEqual(mockTags);
+        const response = await client.tags.list();
+        expect(response).toEqual(mockResponse);
         expect(mockedAxios.get).toHaveBeenCalledWith('/tags');
     });
 
     it('should create a tag', async () => {
         const newTag = { id: '2', name: 'New Tag', created_at: '2023-01-02' };
-        mockedAxios.post.mockResolvedValue({ data: { data: newTag, success: true } });
+        const mockResponse = { data: newTag, success: true };
+        mockedAxios.post.mockResolvedValue({ data: mockResponse });
 
-        const tag = await client.tags.create({ name: 'New Tag' });
-        expect(tag).toEqual(newTag);
+        const response = await client.tags.create({ name: 'New Tag' });
+        expect(response).toEqual(mockResponse);
         expect(mockedAxios.post).toHaveBeenCalledWith('/tags', { name: 'New Tag' });
     });
 
     it('should get a tag by id', async () => {
         const mockTag = { id: '1', name: 'Test Tag', created_at: '2023-01-01' };
-        mockedAxios.get.mockResolvedValue({ data: { data: mockTag, success: true } });
+        const mockResponse = { data: mockTag, success: true };
+        mockedAxios.get.mockResolvedValue({ data: mockResponse });
 
-        const tag = await client.tags.get('1');
-        expect(tag).toEqual(mockTag);
+        const response = await client.tags.get('1');
+        expect(response).toEqual(mockResponse);
         expect(mockedAxios.get).toHaveBeenCalledWith('/tags/1');
     });
 });
