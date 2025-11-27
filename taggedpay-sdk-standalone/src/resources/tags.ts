@@ -1,4 +1,3 @@
-```typescript
 import { BaseResource } from './base';
 import { Tag, CreateTagParams, TaggedPayResponse, PaginationParams } from '../types';
 
@@ -14,7 +13,7 @@ export class Tags extends BaseResource {
     }
 
     async get(id: string): Promise<TaggedPayResponse<Tag>> {
-        const response = await this.client.get<TaggedPayResponse<Tag>>(`/ tags / ${ id } `);
+        const response = await this.client.get<TaggedPayResponse<Tag>>(`/tags/${id}`);
         return response.data;
     }
 }
