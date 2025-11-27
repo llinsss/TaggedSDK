@@ -7,6 +7,15 @@ export interface TaggedPayResponse<T> {
     data: T;
     success: boolean;
     error?: string;
+    meta?: {
+        next_cursor?: string;
+        has_more: boolean;
+    };
+}
+
+export interface PaginationParams {
+    limit?: number;
+    cursor?: string;
 }
 
 export interface Tag {
